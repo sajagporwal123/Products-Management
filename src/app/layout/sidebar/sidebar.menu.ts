@@ -16,4 +16,4 @@ export const MENU_ITEMS: MenuItem[] = [
         icon: 'fa-trash',
         link: '/trash',
     }
-]
+];
