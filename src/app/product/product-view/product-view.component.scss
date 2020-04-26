@@ -1,0 +1,14 @@
+.product-image {
+  width:25%;
+  img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    &:hover {
+      -ms-transform: scale(1.5); /* IE 9 */
+      -webkit-transform: scale(1.5); /* Safari 3-8 */
+      transform: scale(1.5); 
+    }
+  } 
+}
+

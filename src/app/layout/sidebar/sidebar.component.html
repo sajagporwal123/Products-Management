@@ -1,0 +1,16 @@
+<nav id="sidebar" [ngClass]="{'active': datashareService.isMenuOpen}">
+  <div class="sidebar-header">
+    <h3>Products Management</h3>
+    <strong>PM</strong>
+  </div>
+
+  <ul class="list-unstyled components">
+    <li *ngFor="let menu of menuList" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
+        true}">
+      <a [routerLink]='[menu.link]'>
+        <i class="fas" [ngClass]="menu.icon"></i>
+        {{menu.title}}
+      </a>
+    </li>
+  </ul>
+</nav>

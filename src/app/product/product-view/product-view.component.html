@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-12">
+    <button class="btn btn-primary ml-3 mt-3 mb-3" [routerLink]='["/"]'>Back</button>
+  </div>
+</div>
+<div class="card flex-row flex-wrap">
+  <div class="card-header border-0 product-image">
+    <img src="{{product.imageUrl}}" onError='this.src="//placehold.it/200"' alt="{{product.title}}">
+  </div>
+  <div class="card-block w-75 px-2">
+    <div class='row'>
+      <div class='col-md-2'>Name:</div>
+      <div class='col-md-8'>{{product.title}}</div>
+    </div>
+    <div class='row'>
+      <div class='col-md-2'>Description:</div>
+      <div class='col-md-8'>{{product.description}}</div>
+    </div>
+    <div class='row'>
+      <div class='col-md-2'>Price:</div>
+      <div class='col-md-8'>{{product.price}}</div>
+    </div>
+    <div class='row'>
+      <div class='col-md-2'>Rating:</div>
+      <div class='col-md-8'>{{product.rating }}</div>
+    </div>
+    <div class='row'>
+      <div class='col-md-2'>Availability:</div>
+      <div class='col-md-8'>{{product.isInStock ? 'Yes':'No' }}</div>
+    </div>
+    <div class='row'>
+      <div class='col-md-2'>Category:</div>
+      <div class='col-md-8'>{{product.category}}</div>
+    </div>
+    <div class='row'>
+      <div class='col-md-2'>Location:</div>
+      <div class='col-md-8'>{{product.locations.join(', ')}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<div class='card-body'>
+  <div class='row'>
+    <div class='col-8'>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <form [formGroup]="productAddEditForm" (submit)="submit($event)">
+              <div class="form-group">
+                <label>Title *</label>
+                <input type="text" class="form-control" placeholder="Enter Title" formControlName="title">
+                <span class="form-text text-danger"
+                  *ngIf="productAddEditForm.controls['title'].invalid && productAddEditForm.controls['title'].touched">
+                  <span *ngIf="productAddEditForm.controls['title']?.errors.required">
+                    Title Is Required
+                  </span>
+                  <span *ngIf="productAddEditForm.controls['title']?.errors.invalidValue">
+                    Title Value Is Invalid
+                  </span>
+                  <span *ngIf="productAddEditForm.controls['title']?.errors.maxlength">
+                    Title Maximum Length Is 50
+                  </span>
+                </span>
+              </div>
+              <div class="form-group">
+                <label>Image URL *</label>
+                <input type="text" class="form-control" placeholder="Enter Image URL" formControlName="imageUrl"
+                  required>
+                <span class="form-text text-danger"
+                  *ngIf="productAddEditForm.controls['imageUrl'].invalid && productAddEditForm.controls['imageUrl'].touched">
+                  <span *ngIf="productAddEditForm.controls['imageUrl'].errors.required">
+                    Image URL Is Required
+                  </span>
+                  <span *ngIf="productAddEditForm.controls['imageUrl'].errors.pattern">
+                    Please Enter Valid Image URL
+                  </span>
+                </span>
+              </div>
+              <div class="form-group">
+                <label>Description *</label>
+                <textarea class="form-control" class="form-control" placeholder="Description"
+                  formControlName="description" rows=2 name="Enter Description"></textarea>
+                <div class="form-text text-danger"
+                  *ngIf="productAddEditForm.controls['description'].invalid && productAddEditForm.controls['description'].touched">
+                  <div *ngIf="productAddEditForm.controls['description'].errors.required">
+                    Description Is Required
+                  </div>
+                  <div *ngIf="productAddEditForm.controls['description'].errors.minlength">
+                    Description Must Have 15 character
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Price *</label>
+                <input type="number" class="form-control" placeholder="Enter Price" formControlName="price" min="0">
+                <div class="form-text text-danger"
+                  *ngIf="productAddEditForm.controls['price'].invalid && productAddEditForm.controls['price'].touched">
+                  <div *ngIf="productAddEditForm.controls['price'].errors.required">
+                    Price Is Required
+                  </div>
+                  <div *ngIf="productAddEditForm.controls['price'].errors.min">
+                    Price Is Not Valid
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Product Ratings *</label>
+                <input type="number" id="rating" class="form-control" placeholder="Enter Rating"
+                  formControlName="rating" min="1" max="5">
+                <span class="form-text text-danger"
+                  *ngIf="!productAddEditForm.controls['rating'].valid && productAddEditForm.controls['rating'].touched">
+                  <span *ngIf="productAddEditForm.controls['rating'].errors.required">
+                    Ratings is required
+                  </span>
+                  <span
+                    *ngIf="productAddEditForm.controls['rating'].errors.min || productAddEditForm.controls['rating'].errors.max">
+                    Rating Must Be Between 1 to 5
+                  </span>
+                </span>
+              </div>
+              <div class="form-group">
+                <label>Availibility *</label><br>
+                <div class="ds-fx">
+                  <label class="ds-fx">
+                    <input type="radio" [value]="true" formControlName="isInStock">
+                    <span>In Stock</span>
+                  </label>
+                  <div class="col-md-1"></div>
+                  <label class="ds-fx">
+                    <input type="radio" [value]="false" formControlName="isInStock">
+                    <span>Not In Stock</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Category *</label><br>
+                <select formControlName="category" class="form-control">
+                  <option *ngFor="let option of categoryList;" [value]="option">
+                    {{ option }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Locations *</label>
+                <ng-multiselect-dropdown [placeholder]="'Search City'" [data]="locationList" formControlName="locations"
+                  [settings]="dropdownSettings" [required]="true">
+                </ng-multiselect-dropdown>
+                <span class="form-text text-danger"
+                  *ngIf="isFormSubmitted && productAddEditForm.controls['locations'].invalid">
+                  <span *ngIf="productAddEditForm.controls['locations'].errors.required">
+                    Location is required
+                  </span>
+                </span>
+              </div>
+              <button type="submit"
+                class="btn btn-success">{{ productAddEditForm.controls['productId'].value===0? 'Submit':'Update'}}</button>
+              <button type="button" (click)="cancel()" class="btn btn-danger ml-3">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+  <div class="main-layout container-fluid" [ngClass]="{'toggled': datashareService.isMenuOpen}">
+    <app-header></app-header>
+    <app-breadcrumb></app-breadcrumb>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

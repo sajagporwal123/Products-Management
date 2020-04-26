@@ -1,0 +1,41 @@
+.product-card {
+    height: 100%;
+    img {
+        width: auto;
+        height: 205px;
+        margin: 0 auto;
+    }
+}
+
+.no-data {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.card-body {
+    position: relative;
+
+    button {
+        position: absolute;
+        bottom: 10px;
+
+        &.btn-danger {
+            left: 110px;
+        }
+    }
+
+    p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (min-width: 700px) {
+    .parent {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
