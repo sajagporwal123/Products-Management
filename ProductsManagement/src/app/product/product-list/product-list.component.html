@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-8"></div>
+  <div class="col-4">
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="name">
+  </div>
+</div>
+<div class="row">
+  <div class="col-3">
+    <h4>Filter</h4>
+    <div>
+      <div class="ratings-form" id="ratingsForm">
+        <label> Rating</label>
+        <div class="stars">
+          <input type="radio" name="star" [(ngModel)]="selectedRating"
+            (click)="filterChange('rating',$event['target']['value'])" value="1" class="star-1" id="star-1">
+          <label class="star-1" for="star-1">1</label>
+          <input type="radio" name="star" [(ngModel)]="selectedRating"
+            (click)="filterChange('rating',$event['target']['value'])" value="2" class="star-2" id="star-2">
+          <label class="star-2" for="star-2">2</label>
+          <input type="radio" name="star" [(ngModel)]="selectedRating"
+            (click)="filterChange('rating',$event['target']['value'])" value="3" class="star-3" id="star-3">
+          <label class="star-3" for="star-3">3</label>
+          <input type="radio" name="star" [(ngModel)]="selectedRating"
+            (click)="filterChange('rating',$event['target']['value'])" value="4" class="star-4" id="star-4">
+          <label class="star-4" for="star-4">4</label>
+          <input type="radio" name="star" [(ngModel)]="selectedRating"
+            (click)="filterChange('rating',$event['target']['value'])" value="5" class="star-5" id="star-5">
+          <label class="star-5" for="star-5">5</label>
+          <span></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Category </label><br>
+        <select [(ngModel)]="selectedCategory" class="form-control"
+          (change)="filterChange('category',$event.target.value)">
+          <option value="">Select Category</option>
+          <option *ngFor="let option of categoryList;" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label> Location</label>
+        <select [(ngModel)]="selectedLocation" class="form-control"
+          (change)="filterChange('location',$event.target.value)">
+          <option value="">Select Location</option>
+          <option *ngFor="let option of locationList;" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Availability</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inStock" value="true"
+            (change)="filterChange('isInStock',$event.target.value)">
+          <label class="form-check-label" for="inStock">In Stock</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="outOfStock" value="false"
+            (change)="filterChange('isInStock',$event.target.value)">
+          <label class="form-check-label" for="outOfStock">Out Of Stock</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-9" *ngFor="let product of filteredProductList;">
+    <div class="card product-card" style="width: 18rem;" [routerLink]='["details/"+product.productId]'>
+      <img class="card-img-top" onError="this.src='http://placehold.it/20'" [src]="product.imageUrl" [alt]="product.title">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title | titlecase}}</h5>
+        <p class="card-text">{{product.description}}.</p>
+        <button class="btn btn-primary pull-left" [routerLink]='["edit/"+product.productId]'>Edit</button>
+        <button class="btn btn-danger pull-right" (click)="statusChange(product.productId)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
